@@ -1,4 +1,5 @@
 import string
+from http import HTTPStatus
 from random import randrange
 
 from flask import abort, flash, redirect, render_template
@@ -58,4 +59,4 @@ def redirect_view(short_id):
         if 'http://' not in item.original and 'https://' not in item.original:
             return redirect('http://' + item.original)
         return redirect(item.original)
-    abort(404)
+    abort(HTTPStatus.NOT_FOUND)

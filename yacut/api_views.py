@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from flask import jsonify, request
 
 from . import app, db
@@ -26,12 +28,12 @@ def add_short():
     item.from_dict(data)
     db.session.add(item)
     db.session.commit()
-    return jsonify(item.to_dict()), 201
+    return jsonify(item.to_dict()), HTTPStatus.CREATED
 
 
 @app.route('/api/id/<string:short_id>/', methods=['GET'])
 def get_short(short_id):
     item = URL_map.query.filter_by(short=short_id).first()
     if item is None:
-        raise InvalidAPIUsage('Указанный id не найден', 404)
-    return jsonify(item.to_api_dict()), 200
+        raise InvalidAPIUsage('Указанный id не найден', HTTPStatus.NOT_FOUND)
+    return jsonify(item.to_api_dict()), HTTPStatus.OK
