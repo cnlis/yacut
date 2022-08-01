@@ -46,7 +46,7 @@ API обслуживает два эндпоинта:
 
 * Получение url по короткой ссылке
 
-  **GET /api/id/<<string:stort_id>>/**
+  **GET /api/id/<<string:short_id>>/**
 
   Ответ сервера
   ```json
